@@ -24,9 +24,9 @@ import (
 // When a file is removed a Remove event won't be emitted until all file
 // descriptors are closed, and deletes will always emit a Chmod. For example:
 //
-//     fp := os.Open("file")
-//     os.Remove("file")        // Triggers Chmod
-//     fp.Close()               // Triggers Remove
+//	fp := os.Open("file")
+//	os.Remove("file")        // Triggers Chmod
+//	fp.Close()               // Triggers Remove
 //
 // The fs.inotify.max_user_watches sysctl variable specifies the upper limit
 // for the number of watches per user, and fs.inotify.max_user_instances
@@ -38,15 +38,15 @@ import (
 //
 // To increase them you can use sysctl or write the value to the /proc file:
 //
-//     # Default values on Linux 5.18
-//     sysctl fs.inotify.max_user_watches=124983
-//     sysctl fs.inotify.max_user_instances=128
+//	# Default values on Linux 5.18
+//	sysctl fs.inotify.max_user_watches=124983
+//	sysctl fs.inotify.max_user_instances=128
 //
 // To make the changes persist on reboot edit /etc/sysctl.conf or
 // /usr/lib/sysctl.d/50-default.conf (on some systemd systems):
 //
-//     fs.inotify.max_user_watches=124983
-//     fs.inotify.max_user_instances=128
+//	fs.inotify.max_user_watches=124983
+//	fs.inotify.max_user_instances=128
 //
 // Reaching the limit will result in a "no space left on device" or "too many open
 // files" error.
@@ -346,7 +346,9 @@ func (w *Watcher) WatchList() []string {
 }
 
 // Watch all events (except NOTE_EXTEND, NOTE_LINK, NOTE_REVOKE)
-const noteAllEvents = unix.NOTE_DELETE | unix.NOTE_WRITE | unix.NOTE_ATTRIB | unix.NOTE_RENAME
+const noteAllEvents = unix.NOTE_DELETE | unix.NOTE_WRITE | unix.NOTE_RENAME
+
+//const noteAllEvents = unix.NOTE_DELETE | unix.NOTE_WRITE | unix.NOTE_ATTRIB | unix.NOTE_RENAME
 
 // addWatch adds name to the watched file set.
 // The flags are interpreted as described in kevent(2).
