@@ -509,6 +509,8 @@ func (w *Watcher) deleteWatch(watch *watch) {
 	}
 }
 
+const WatchSubTree = true
+
 // Must run within the I/O thread.
 func (w *Watcher) startRead(watch *watch) error {
 	err := windows.CancelIo(watch.ino.handle)
