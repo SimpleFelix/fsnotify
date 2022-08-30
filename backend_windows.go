@@ -509,7 +509,7 @@ func (w *Watcher) deleteWatch(watch *watch) {
 	}
 }
 
-const WatchSubTree = false
+const WatchSubTree = true
 
 // Must run within the I/O thread.
 func (w *Watcher) startRead(watch *watch) error {
