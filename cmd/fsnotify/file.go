@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/fsnotify/fsnotify"
+	"github.com/simplefelix/fsnotify"
 )
 
 func file(files ...string) {
