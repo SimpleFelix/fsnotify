@@ -27,9 +27,9 @@ import (
 // When a file is removed a Remove event won't be emitted until all file
 // descriptors are closed, and deletes will always emit a Chmod. For example:
 //
-//     fp := os.Open("file")
-//     os.Remove("file")        // Triggers Chmod
-//     fp.Close()               // Triggers Remove
+//	fp := os.Open("file")
+//	os.Remove("file")        // Triggers Chmod
+//	fp.Close()               // Triggers Remove
 //
 // The fs.inotify.max_user_watches sysctl variable specifies the upper limit
 // for the number of watches per user, and fs.inotify.max_user_instances
@@ -41,15 +41,15 @@ import (
 //
 // To increase them you can use sysctl or write the value to the /proc file:
 //
-//     # Default values on Linux 5.18
-//     sysctl fs.inotify.max_user_watches=124983
-//     sysctl fs.inotify.max_user_instances=128
+//	# Default values on Linux 5.18
+//	sysctl fs.inotify.max_user_watches=124983
+//	sysctl fs.inotify.max_user_instances=128
 //
 // To make the changes persist on reboot edit /etc/sysctl.conf or
 // /usr/lib/sysctl.d/50-default.conf (on some systemd systems):
 //
-//     fs.inotify.max_user_watches=124983
-//     fs.inotify.max_user_instances=128
+//	fs.inotify.max_user_watches=124983
+//	fs.inotify.max_user_instances=128
 //
 // Reaching the limit will result in a "no space left on device" or "too many open
 // files" error.
@@ -532,7 +532,7 @@ func (w *Watcher) startRead(watch *watch) error {
 	}
 
 	rdErr := windows.ReadDirectoryChanges(watch.ino.handle, &watch.buf[0],
-		uint32(unsafe.Sizeof(watch.buf)), false, mask, nil, &watch.ov, 0)
+		uint32(unsafe.Sizeof(watch.buf)), true, mask, nil, &watch.ov, 0)
 	if rdErr != nil {
 		err := os.NewSyscallError("ReadDirectoryChanges", rdErr)
 		if rdErr == windows.ERROR_ACCESS_DENIED && watch.mask&provisional == 0 {
