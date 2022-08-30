@@ -534,7 +534,7 @@ func (w *Watcher) startRead(watch *watch) error {
 	}
 
 	rdErr := windows.ReadDirectoryChanges(watch.ino.handle, &watch.buf[0],
-		uint32(unsafe.Sizeof(watch.buf)), true, mask, nil, &watch.ov, 0)
+		uint32(unsafe.Sizeof(watch.buf)), WatchSubTree, mask, nil, &watch.ov, 0)
 	if rdErr != nil {
 		err := os.NewSyscallError("ReadDirectoryChanges", rdErr)
 		if rdErr == windows.ERROR_ACCESS_DENIED && watch.mask&provisional == 0 {
