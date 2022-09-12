@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/simplefelix/fsnotify/internal"
+	"github.com/chris-sean/fsnotify/internal"
 )
 
 // Set soft open file limit to the maximum; on e.g. OpenBSD it's 512/1024.

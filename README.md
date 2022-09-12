@@ -36,7 +36,7 @@ package main
 import (
     "log"
 
-    "github.com/simplefelix/fsnotify"
+    "github.com/chris-sean/fsnotify"
 )
 
 func main() {
